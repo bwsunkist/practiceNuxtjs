@@ -1,7 +1,7 @@
 
 export default {
-  mode: 'universal',
-  // mode: 'spa',
+  // mode: 'universal',
+  mode: 'spa',
   /*
   ** Headers of the page
   */
@@ -29,7 +29,8 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
-      { src: "~plugins/persistedstate.js", ssr: false }
+      { src: "~plugins/persistedstate.js", ssr: false },
+      '~/plugins/vue-mermaid'
   ],
   /*
   ** Nuxt.js dev-modules

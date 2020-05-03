@@ -28,6 +28,11 @@
         Go to CalcApp Page
         </router-link>
       </div>
+      <div class="button--green">
+        <router-link v-bind:to="'/mermaidtest'"> 
+        Go to mermaidtest Page
+        </router-link>
+      </div>
       <h2 class="subtitle">
         {{now}}
       </h2>

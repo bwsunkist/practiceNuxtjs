@@ -14,13 +14,15 @@
   "dependencies": {
     "@nuxtjs/axios": "^5.3.6",
     "@nuxtjs/pwa": "^3.0.0-0",
-    "nuxt": "^2.0.0",
+    "nuxt": "^2.12.2",
+    "vue": "^2.6.11",
+    "vue-mermaid": "0.0.12",
     "vuex-persistedstate": "^2.7.0"
   },
   "devDependencies": {
     "@vue/test-utils": "^1.0.0-beta.27",
-    "babel-jest": "^24.1.0",
-    "jest": "^24.1.0",
+    "babel-jest": "^25.5.1",
+    "jest": "^25.5.4",
     "vue-jest": "^4.0.0-0"
   }
 }
