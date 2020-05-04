@@ -10,6 +10,17 @@
         @nodeClick="editNode"
         v-bind:config="mermaid"
       ></vue-mermaid>
+      <div class="inputt">
+        Set Parent : 
+        <input v-model="tgtparents" />
+      </div>
+      Set Text : <input v-model="newText" />
+        <button v-on:click="addNewNode" v-bind:disabled="isButtonAble">Add</button>
+      <br />
+      check parent exist : {{isexistparent}}
+      <br />
+      <br />
+      <br />
       <div class="button--grey">
         <router-link to="/"> 
         Back To homepage
@@ -23,6 +34,9 @@
 export default {
   data: function(){
     return {
+      tgtparents: '',
+      newText: '',
+      currentmaxid: 6,
       title : 'mermaid test',
       mermaid: {
         theme: "default",
@@ -46,9 +60,51 @@ export default {
       ]
     };
   },
+  computed: {
+    isexistparent(event) {
+      return !this.isButtonAble?'OK':'NG '
+      // this.data[0].next.push("5")
+      // return this.data[0].next
+      // return '"' + String(this.currentmaxid) + '"'
+    },
+    isButtonAble(event) {
+      return (this.filterByParents(this.tgtparents) === null)
+    },
+    nowNextA(event) {
+      return this.data[0].next
+    }
+  },
   methods: {
     editNode(nodeId) {
       alert(nodeId);
+    },
+    filterByParents(text){
+      const dataarr = this.data
+      for(let i = 0; i < this.currentmaxid; i++){
+        if(dataarr[i].text === text)return dataarr[i]
+      }
+      return null
+    },
+    addNewNode(event) {
+      const parent = this.filterByParents(this.tgtparents)
+      const tagetId = parent.id
+      let newtext = (this.newText === '') ? ('new_' + String(this.currentmaxid)) : this.newText
+      this.currentmaxid++
+      for(let i = 0; i < (this.currentmaxid-1); i++){
+        console.log(this.data[i].id)
+        if(this.data[i].id === tagetId){
+          const newel = String(this.currentmaxid)
+          if(this.data[i].next === undefined){
+            this.data[i].next = []
+          }
+            this.data[i].next.push(newel)
+        }
+      }
+      const newNode = {
+       id:  this.currentmaxid,
+       text: newtext
+      }
+      this.data.push(newNode)
     }
   }
 }
@@ -84,5 +140,9 @@ export default {
 
 .links {
   padding-top: 15px;
+}
+
+.inputt {
+  margin-top: 10px;
 }
 </style>
